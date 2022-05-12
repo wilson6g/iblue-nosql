@@ -7,16 +7,16 @@ const updateAddressInterface = express.Router();
 updateAddressInterface.put('/api/address/:id', async (request, response) => {
 
   const isFieldsValid = validateFieldsUpdateAddress(request, response);
-  console.log(isFieldsValid);
-  if (!isFieldsValid) return isFieldsValid;
+
+  if (isFieldsValid != true) return response.status(400).send();
 
   const alreadyExists = await updateAddressDomain(request, response);
-  console.log(alreadyExists);
-  if(alreadyExists != true) return alreadyExists;
+
+  if(alreadyExists != true) return response.status(400).send();
 
   const addressUpdated = await addressUpdate(request, response);
-  console.log(addressUpdated);
-  return response.status(addressUpdated.statusCode).json(addressUpdated);
+
+  return response.status(addressUpdated.statusCode).json(addressUpdated).send();
 });
 
 module.exports = updateAddressInterface;

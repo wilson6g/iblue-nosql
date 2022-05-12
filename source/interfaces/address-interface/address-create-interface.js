@@ -6,11 +6,11 @@ const createAddress = require('../../infrastructure/repository/address-repositor
 createAddressInterface.post('/api/address', async (request, response) => {
   const isFieldsValid = validateFieldsCreateAddress(request, response);
 
-  if(isFieldsValid != true) return isFieldsValid;
+  if(isFieldsValid != true) return response.status(400).send();
 
   const addressCreated = await createAddress(request, response);
 
-  return response.status(addressCreated.statusCode).json(addressCreated);
+  return response.status(addressCreated.statusCode).json(addressCreated).send();
 })
 
 

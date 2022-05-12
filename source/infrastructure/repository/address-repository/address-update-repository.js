@@ -15,7 +15,6 @@ const addressUpdate = async (request, response) => {
         id: id,
       },
       data: {
-        id,
         address,
         address_status,
         userId

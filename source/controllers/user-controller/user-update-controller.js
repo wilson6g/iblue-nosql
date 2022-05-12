@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const updateUserSchema = Joi.object().keys({
-  name: Joi.string().regex(/^\w+(?:\s+\w+)*$/).min(5).max(30).required().messages({
+  name: Joi.string().min(5).max(30).required().messages({
     'string.base': `"name" should be a type of 'text'`,
     'string.empty': `"name" cannot be an empty field`,
     'string.min': `"name" should have a minimum length of {#limit}`,

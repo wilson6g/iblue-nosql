@@ -8,14 +8,14 @@ updateUserInterface.put('/api/user/:id', async (request, response) => {
 
   const isFieldsValid = validateFieldsUpdateUser(request, response);
 
-  if (!isFieldsValid) return isFieldsValid;
+  if (isFieldsValid != true) return response.status(400).send();
 
   const alreadyExists = await updateUserDomain(request, response);
 
-  if(alreadyExists != true) return alreadyExists;
+  if(alreadyExists != true) return response.status(400).send();
 
   const userUpdated = await userUpdate(request, response);
-  return response.status(userUpdated.statusCode).json(userUpdated);
+  return response.status(userUpdated.statusCode).json(userUpdated).send();
 });
 
 module.exports = updateUserInterface;

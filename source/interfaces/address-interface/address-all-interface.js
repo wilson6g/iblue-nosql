@@ -5,7 +5,7 @@ const allAddressInterface = express.Router();
 allAddressInterface.get('/api/address', async (request, response) => {
   const allAddresses = await listAllAddresses(request, response);
   
-  return response.status(allAddresses.statusCode).json(allAddresses);
+  return response.status(allAddresses.statusCode).json(allAddresses).send();
 });
 
 module.exports = allAddressInterface;

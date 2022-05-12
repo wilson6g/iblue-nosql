@@ -5,11 +5,11 @@ const createUserInterface = express.Router();
 
 createUserInterface.post('/api/user', async (request, response) => {
   const isFieldsValid = validateFieldsCreateUser(request, response);
-  if(isFieldsValid != true) return isFieldsValid;
+  if(isFieldsValid != true) return response.status(400).send();
 
   const userCreated = await userCreate(request, response);
   
-  return response.status(userCreated.statusCode).json(userCreated);
+  return response.status(userCreated.statusCode).json(userCreated).send();
 });
 
 module.exports = createUserInterface;
